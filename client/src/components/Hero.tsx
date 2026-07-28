@@ -1,13 +1,20 @@
 /**
- * Hero — spec: Brickell/Miami architectural photo bg with 10% #f5f5f5 overlay,
- * centered text. H1 Cormorant Garamond Bold 48px #183760, sub Inter Light 18px #183760.
- * Two buttons: primary (bg #2f5c99) Legal Services, secondary (transparent, 1px border
- * #2f5c99, text #183760) Consulting Services — switch the Specialties vertical.
+ * Hero — Canva reference: washed-out Brickell photo, HUGE two-line serif headline
+ * (Cormorant Garamond Bold, ~72-96px desktop) in #183760, gray-blue sans subheadline,
+ * CTAs: solid uppercase "SCHEDULE A CONSULTATION" + white outlined "VIEW PRACTICE AREAS".
  */
 import { useLang } from "@/contexts/LanguageContext";
 import { CONTENT } from "@/lib/content";
 
 const HERO_IMG = "/manus-storage/hero_brickell_0d881ddd.jpg";
+
+const VIEW_PRACTICE: Record<string, string> = {
+  en: "View Practice Areas",
+  es: "Ver Áreas de Práctica",
+  fr: "Voir les Domaines d'Expertise",
+  pt: "Ver Áreas de Atuação",
+  it: "Vedi le Aree di Attività",
+};
 
 export default function Hero({
   onSelectVertical,
@@ -16,13 +23,16 @@ export default function Hero({
 }) {
   const { lang } = useLang();
 
-  const pick = (v: "legal" | "consulting") => {
-    onSelectVertical(v);
+  const goContact = () =>
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+
+  const goPractices = () => {
+    onSelectVertical("legal");
     document.getElementById("specialties")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="top" className="relative min-h-[92vh] flex items-center justify-center pt-[72px]">
+    <section id="top" className="relative min-h-[92vh] flex items-center justify-center pt-[92px]">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${HERO_IMG})` }}
@@ -33,27 +43,27 @@ export default function Hero({
       <div className="absolute inset-0 bg-[#f5f5f5]/10" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#f5f5f5]/85 via-[#f5f5f5]/60 to-[#f5f5f5]/85" />
 
-      <div className="relative z-10 container text-center max-w-4xl mx-auto px-4">
+      <div className="relative z-10 container text-center max-w-6xl mx-auto px-4">
         <h1
-          className="font-display font-bold text-[#183760] text-4xl md:text-5xl lg:text-[48px] leading-[1.15] tracking-tight"
+          className="font-display font-bold text-[#183760] text-[44px] md:text-[68px] lg:text-[88px] leading-[1.08] tracking-tight text-balance"
         >
           {CONTENT.heroTitle[lang]}
         </h1>
-        <p className="mt-6 text-[17px] md:text-[18px] font-light text-[#183760] max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-8 text-[18px] md:text-[22px] font-normal text-[#4b5b74] max-w-3xl mx-auto leading-relaxed">
           {CONTENT.heroSub[lang]}
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-5">
           <button
-            onClick={() => pick("legal")}
-            className="w-full sm:w-auto bg-[#2f5c99] text-[#f5f5f5] font-bold text-[15px] px-8 py-3.5 rounded-sm hover:bg-[#183760] active:scale-[0.97] transition-all duration-200 shadow-md"
+            onClick={goContact}
+            className="w-full sm:w-auto bg-[#2f5c99] text-white font-bold uppercase tracking-wide text-[15px] px-9 py-4 rounded-lg hover:bg-[#183760] active:scale-[0.97] transition-all duration-200 shadow-md"
           >
-            {CONTENT.tabLegal[lang]}
+            {CONTENT.cta[lang]}
           </button>
           <button
-            onClick={() => pick("consulting")}
-            className="w-full sm:w-auto bg-transparent border border-[#2f5c99] text-[#183760] font-bold text-[15px] px-8 py-3.5 rounded-sm hover:bg-[#2f5c99]/10 active:scale-[0.97] transition-all duration-200"
+            onClick={goPractices}
+            className="w-full sm:w-auto bg-white/95 border border-[#c8d4e6] text-[#2f5c99] font-bold uppercase tracking-wide text-[15px] px-9 py-4 rounded-lg hover:bg-white hover:border-[#2f5c99] active:scale-[0.97] transition-all duration-200 shadow-sm"
           >
-            {CONTENT.tabConsulting[lang]}
+            {VIEW_PRACTICE[lang]}
           </button>
         </div>
       </div>

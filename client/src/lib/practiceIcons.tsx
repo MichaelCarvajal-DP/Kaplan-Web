@@ -3,7 +3,7 @@
  * lucide-react — Iconos: Línea minimalista en #2f5c99.
  */
 import {
-  Briefcase,
+  Gavel,
   Globe2,
   Plane,
   Scale,
@@ -19,10 +19,10 @@ import {
 } from "lucide-react";
 
 export const PRACTICE_ICONS: Record<string, LucideIcon> = {
-  business: Briefcase,
+  business: Scale,
   immigration: Globe2,
   aviation: Plane,
-  civil: Scale,
+  civil: Gavel,
   estate: ScrollText,
   govrel: Landmark,
   latam: Map,

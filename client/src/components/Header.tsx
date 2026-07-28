@@ -1,18 +1,12 @@
 /**
- * Sticky header — spec: bg #f5f5f5, logo left, centered nav (Inter Bold 14px #183760,
- * active = 2px underline #2f5c99), right: flag language selector (US/ES/FR/BR/IT) + CTA
- * (bg #2f5c99, white text, Inter Bold 13px).
+ * Sticky header — Canva reference: white bg, larger logo left, centered nav
+ * (Specialties / About Us / Team / Blog, active = blue underline), right column:
+ * solid "CONTACT US" button with a visible row of 5 flag icons directly beneath it.
  */
 import { useEffect, useState } from "react";
 import { useLang } from "@/contexts/LanguageContext";
 import { CONTENT, type Lang } from "@/lib/content";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { toast } from "sonner";
 
 const LOGO = "/manus-storage/logo_color_198cf3c1.png";
@@ -25,14 +19,14 @@ const FLAGS: { lang: Lang; src: string; label: string }[] = [
   { lang: "it", src: "/manus-storage/flag_it_30512f8f.png", label: "Italiano" },
 ];
 
-const SECTION_IDS = ["specialties", "about", "team", "blog", "contact"];
+// Canva header nav shows 4 items; "Contact Us" is the button on the right.
+const SECTION_IDS = ["specialties", "about", "team", "blog"];
 
 export default function Header() {
   const { lang, setLang } = useLang();
   const [active, setActive] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const nav = CONTENT.nav[lang];
-  const current = FLAGS.find((f) => f.lang === lang)!;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,8 +54,8 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#f5f5f5]/95 backdrop-blur-sm border-b border-[#2f5c99]/10">
-      <div className="container flex items-center justify-between h-[72px]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#2f5c99]/10">
+      <div className="container flex items-center justify-between h-[92px]">
         <a
           href="#top"
           onClick={(e) => {
@@ -74,17 +68,17 @@ export default function Header() {
           <img
             src={LOGO}
             alt="Kaplan & Kaplan Legal & Advisory Main Logo"
-            className="h-11 w-auto"
+            className="h-14 w-auto"
           />
         </a>
 
         {/* Center nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-12">
           {SECTION_IDS.map((id, i) => (
             <button
               key={id}
               onClick={() => go(id)}
-              className={`text-[14px] font-bold text-[#183760] pb-1 border-b-2 transition-colors duration-200 ${
+              className={`text-[16px] font-medium text-[#1f2937] pb-1.5 border-b-2 transition-colors duration-200 ${
                 active === id ? "border-[#2f5c99]" : "border-transparent hover:border-[#2f5c99]/40"
               }`}
               style={{ fontFamily: "Inter, sans-serif" }}
@@ -95,34 +89,32 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Language selector */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 px-2 py-1.5 rounded-md hover:bg-[#e6edf7] transition-colors">
-              <img src={current.src} alt={current.label} className="h-4 w-6 object-cover rounded-[2px] shadow-sm" />
-              <span className="hidden sm:inline text-[12px] font-semibold text-[#183760] uppercase">{lang}</span>
-              <ChevronDown className="h-3.5 w-3.5 text-[#183760]" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-[#f5f5f5] border-[#2f5c99]/20">
+          {/* CTA + flags column, per Canva reference */}
+          <div className="hidden md:flex flex-col items-end gap-2">
+            <button
+              onClick={() => go("contact")}
+              className="inline-flex items-center bg-[#2f5c99] text-white text-[14px] font-bold uppercase tracking-wide px-7 py-2.5 rounded-lg hover:bg-[#183760] active:scale-[0.97] transition-all duration-200"
+            >
+              {nav[4] /* Contact Us */}
+            </button>
+            <div className="flex items-center gap-2.5 pr-0.5">
               {FLAGS.map((f) => (
-                <DropdownMenuItem
+                <button
                   key={f.lang}
                   onClick={() => setLang(f.lang)}
-                  className={`gap-2.5 cursor-pointer ${f.lang === lang ? "bg-[#e6edf7]" : ""}`}
+                  title={f.label}
+                  aria-label={f.label}
+                  className={`transition-all duration-200 rounded-[2px] ${
+                    f.lang === lang
+                      ? "ring-2 ring-[#2f5c99] ring-offset-1 scale-105"
+                      : "opacity-80 hover:opacity-100 hover:scale-105"
+                  }`}
                 >
-                  <img src={f.src} alt={f.label} className="h-4 w-6 object-cover rounded-[2px]" />
-                  <span className="text-[13px] text-[#183760]">{f.label}</span>
-                </DropdownMenuItem>
+                  <img src={f.src} alt={f.label} className="h-[15px] w-[24px] object-cover rounded-[2px] shadow-sm" />
+                </button>
               ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* CTA */}
-          <button
-            onClick={() => go("contact")}
-            className="hidden md:inline-flex items-center bg-[#2f5c99] text-[#f5f5f5] text-[13px] font-bold px-5 py-2.5 rounded-sm hover:bg-[#183760] active:scale-[0.97] transition-all duration-200"
-          >
-            {CONTENT.cta[lang]}
-          </button>
+            </div>
+          </div>
 
           {/* Mobile menu toggle */}
           <button
@@ -137,7 +129,7 @@ export default function Header() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="lg:hidden bg-[#f5f5f5] border-t border-[#2f5c99]/10 px-6 py-4 flex flex-col gap-3">
+        <nav className="lg:hidden bg-white border-t border-[#2f5c99]/10 px-6 py-4 flex flex-col gap-3">
           {SECTION_IDS.map((id, i) => (
             <button
               key={id}
@@ -147,15 +139,26 @@ export default function Header() {
               {nav[i]}
             </button>
           ))}
+          <div className="flex items-center gap-3 py-2">
+            {FLAGS.map((f) => (
+              <button
+                key={f.lang}
+                onClick={() => setLang(f.lang)}
+                aria-label={f.label}
+                className={`rounded-[2px] ${f.lang === lang ? "ring-2 ring-[#2f5c99] ring-offset-1" : "opacity-80"}`}
+              >
+                <img src={f.src} alt={f.label} className="h-[15px] w-[24px] object-cover rounded-[2px]" />
+              </button>
+            ))}
+          </div>
           <button
             onClick={() => go("contact")}
-            className="mt-2 bg-[#2f5c99] text-[#f5f5f5] text-[13px] font-bold px-5 py-3 rounded-sm text-center"
+            className="mt-1 bg-[#2f5c99] text-white text-[13px] font-bold uppercase px-5 py-3 rounded-lg text-center"
           >
-            {CONTENT.cta[lang]}
+            {nav[4]}
           </button>
         </nav>
       )}
     </header>
   );
 }
-
