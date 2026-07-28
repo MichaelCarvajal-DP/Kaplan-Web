@@ -1,25 +1,31 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Kaplan & Kaplan — single-page site per marketing spec.
+ * Sections: Header · Hero · Specialties (tabs) · About · Team · Contact · Footer.
+ * Palette #f5f5f5/#e6edf7/#183760/#2f5c99 · Cormorant Garamond + Inter.
  */
+import { useState } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Specialties from "@/components/Specialties";
+import About from "@/components/About";
+import Team from "@/components/Team";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const [vertical, setVertical] = useState<"legal" | "consulting">("legal");
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+    <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
+      <Header />
+      <main className="flex-1">
+        <Hero onSelectVertical={setVertical} />
+        <Specialties vertical={vertical} onVerticalChange={setVertical} />
+        <About />
+        <Team />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
