@@ -62,6 +62,8 @@ const COMMISSIONER: Record<string, string> = {
   it: "Ex Commissario della Contea di Miami-Dade (Presidente, Salute e Sicurezza Pubblica)",
 };
 
+const LANGUAGE_LABEL = "Languages Spoken:";
+
 const LANGS: Record<PartnerKey, Record<string, string>> = {
   bruce: {
     en: "English, Spanish",
@@ -84,18 +86,19 @@ type Partner = {
   name: string;
   photo?: string;
   monogram?: string;
-  credentials: (lang: string) => string[];
+  credentials: (lang: string) => { text: string; label?: boolean }[];
 };
 
 const PARTNERS: Partner[] = [
   {
     key: "bruce",
     name: "Bruce C. Kaplan, Esq.",
+    photo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663863390635/yTqnVxZuyVPYqGkX.png",
     monogram: "BCK",
     credentials: (lang) => [
-      "Brooklyn Law School, JD | Union College, BA History",
-      COMMISSIONER[lang],
-      LANGS.bruce[lang],
+      { text: "Brooklyn Law School, JD | Union College, BA History" },
+      { text: COMMISSIONER[lang] },
+      { text: `${LANGUAGE_LABEL} ${LANGS.bruce[lang]}`, label: true },
     ],
   },
   {
@@ -103,8 +106,8 @@ const PARTNERS: Partner[] = [
     name: "Grant E. Kaplan, Esq.",
     photo: "/manus-storage/grant_photo_9afaf89d.jpg",
     credentials: (lang) => [
-      "American University Washington College of Law, JD | University of Maryland, BA",
-      LANGS.grant[lang],
+      { text: "American University Washington College of Law, JD | University of Maryland, BA" },
+      { text: `${LANGUAGE_LABEL} ${LANGS.grant[lang]}`, label: true },
     ],
   },
 ];
@@ -154,7 +157,7 @@ export default function Team() {
                   <p className="mt-3 text-white font-bold text-[15px]">{ROLE[p.key][lang]}</p>
                   {p.credentials(lang).map((c, i) => (
                     <p key={i} className="mt-3 text-white font-bold text-[15px] leading-snug max-w-md">
-                      {c}
+                      {c.text}
                     </p>
                   ))}
                 </div>

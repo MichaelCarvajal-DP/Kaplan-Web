@@ -5,7 +5,7 @@
  * submit button bg #2f5c99 text #f5f5f5 Inter Bold 14px "Submit Secure Inquiry →".
  */
 import { useState } from "react";
-import { MapPin, Phone, ArrowRight, Lock } from "lucide-react";
+import { MapPin, Phone, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { useLang } from "@/contexts/LanguageContext";
 import { CONTENT } from "@/lib/content";
@@ -30,7 +30,7 @@ const LABELS: Record<
     phone: "Phone Number*",
     interest: "Primary Area of Interest",
     overview: "Subject Matter Overview",
-    submit: "Submit Secure Inquiry",
+    submit: "Submit Inquiry",
     select: "Select an area…",
     sent: "Your inquiry has been received. We will respond with discretion.",
     required: "Please complete the required fields.",
@@ -135,17 +135,17 @@ export default function Contact() {
         {/* Left column */}
         <div>
           <h2 className="font-display font-bold text-[32px] lg:text-[36px] leading-tight text-[#183760]">
-            {title}
+            Contact Us
           </h2>
-          <p className="mt-5 text-[15px] font-light text-[#183760] leading-relaxed">{sub}</p>
+          <p className="mt-5 text-[15px] font-light text-[#183760] leading-relaxed">Please provide a brief description of your matter and our team will be in touch.</p>
 
           <div className="mt-10 space-y-5">
             <div className="flex items-start gap-3">
               <MapPin className="h-5 w-5 text-[#2f5c99] mt-0.5" strokeWidth={1.5} />
               <p className="text-[14px] font-light text-[#183760] leading-relaxed">
-                9737 Doral Blvd
+                201 Alhambra Cir., Suite 600
                 <br />
-                Doral, FL 33178
+                Coral Gables, FL 33136
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -157,12 +157,7 @@ export default function Contact() {
                 305-407-2420
               </a>
             </div>
-            <div className="flex items-center gap-3">
-              <Lock className="h-5 w-5 text-[#2f5c99]" strokeWidth={1.5} />
-              <p className="text-[12px] font-light text-[#183760]/80 uppercase tracking-wide">
-                Secure &amp; Confidential
-              </p>
-            </div>
+
           </div>
         </div>
 

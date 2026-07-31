@@ -137,7 +137,7 @@ export default function Footer() {
               ))}
             </ul>
             <p className="mt-6 text-[13px] font-light text-[#f5f5f5]/85 leading-relaxed">
-              9737 Doral Blvd, Doral, FL 33178
+              201 Alhambra Cir., Suite 600, Coral Gables, FL 33136
               <br />
               <a href="tel:+13054072420" className="hover:underline underline-offset-4">
                 305-407-2420

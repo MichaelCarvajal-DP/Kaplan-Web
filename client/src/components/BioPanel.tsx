@@ -23,7 +23,8 @@ const PARTNER_META: Record<
   },
   bruce: {
     name: "Bruce C. Kaplan",
-    role: "Partner · Former Miami-Dade County Commissioner",
+    role: "Founding Partner · Former Miami-Dade County Commissioner",
+    photo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663863390635/yTqnVxZuyVPYqGkX.png",
     initials: "BK",
   },
 };
