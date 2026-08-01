@@ -29,6 +29,13 @@ const PARTNER_META: Record<
   },
 };
 
+const CLOSE_BTN: Record<string, string> = {
+  en: "Close",
+  es: "Cerrar",
+  fr: "Fermer",
+  pt: "Fechar",
+  it: "Chiudi",
+};
 export default function BioPanel({
   partner,
   onClose,
@@ -77,7 +84,7 @@ export default function BioPanel({
                 className="inline-flex items-center gap-2 border-2 border-[#183760] text-[#183760] text-[14px] font-bold px-4 py-2 rounded-sm hover:bg-[#183760] hover:text-[#f5f5f5] active:scale-[0.97] transition-all duration-200"
               >
                 <X className="h-4 w-4" />
-                Close
+                {CLOSE_BTN[lang] ?? "Close"}
               </button>
             </div>
 

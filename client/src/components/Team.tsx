@@ -46,12 +46,12 @@ const ROLE: Record<PartnerKey, Record<string, string>> = {
     it: "Managing Partner",
   },
   bruce: {
-    en: "Partner",
-    es: "Socio",
-    fr: "Associé",
-    pt: "Sócio",
-    it: "Partner",
-  },
+    en: "Founding Partner",
+    es: "Socio Fundador",
+    fr: "Associé Fondateur",
+    pt: "Sócio Fundador",
+    it: "Founding Partner",
+},
 };
 
 const COMMISSIONER: Record<string, string> = {
@@ -62,7 +62,13 @@ const COMMISSIONER: Record<string, string> = {
   it: "Ex Commissario della Contea di Miami-Dade (Presidente, Salute e Sicurezza Pubblica)",
 };
 
-const LANGUAGE_LABEL = "Languages Spoken:";
+const LANGUAGE_LABEL: Record<string, string> = {
+  en: "Languages Spoken:",
+  es: "Idiomas:",
+  fr: "Langues parlées :",
+  pt: "Idiomas falados:",
+  it: "Lingue parlate:",
+};
 
 const LANGS: Record<PartnerKey, Record<string, string>> = {
   bruce: {
@@ -98,7 +104,7 @@ const PARTNERS: Partner[] = [
     credentials: (lang) => [
       { text: "Brooklyn Law School, JD | Union College, BA History" },
       { text: COMMISSIONER[lang] },
-      { text: `${LANGUAGE_LABEL} ${LANGS.bruce[lang]}`, label: true },
+      { text: `${LANGUAGE_LABEL[lang] ?? LANGUAGE_LABEL.en} ${LANGS.bruce[lang]}`, label: true },
     ],
   },
   {
@@ -107,7 +113,7 @@ const PARTNERS: Partner[] = [
     photo: "/manus-storage/grant_photo_9afaf89d.jpg",
     credentials: (lang) => [
       { text: "American University Washington College of Law, JD | University of Maryland, BA" },
-      { text: `${LANGUAGE_LABEL} ${LANGS.grant[lang]}`, label: true },
+      { text: `${LANGUAGE_LABEL[lang] ?? LANGUAGE_LABEL.en} ${LANGS.grant[lang]}`, label: true },
     ],
   },
 ];

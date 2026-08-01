@@ -58,18 +58,10 @@ export default function Footer() {
   const firmLinks: { label: string; id: string }[] = [
     { label: nav[1], id: "about" },
     { label: nav[2], id: "team" },
-    { label: nav[3], id: "blog" },
     { label: nav[4], id: "contact" },
   ];
 
-  const practiceLinks = [
-    "Business Law",
-    "Immigration Law",
-    "Civil Litigation",
-    "Estate Planning",
-    "Government Relations & Contracting",
-    "Latin America Practice",
-  ];
+  const practiceLinks = ["business", "immigration", "civil", "estate", "govrel", "latam"];
 
   return (
     <footer className="bg-[#183760]">
@@ -114,7 +106,7 @@ export default function Footer() {
                     onClick={() => scrollTo("specialties")}
                     className="text-left text-[13px] font-light text-[#f5f5f5] hover:text-[#e6edf7] hover:underline underline-offset-4 transition-colors"
                   >
-                    {p}
+                    {CONTENT.practices[p as keyof typeof CONTENT.practices]?.name ?? p}
                   </button>
                 </li>
               ))}
@@ -159,4 +151,3 @@ export default function Footer() {
     </footer>
   );
 }
-

@@ -98,10 +98,9 @@ const inputCls =
 export default function Contact() {
   const { lang } = useLang();
   const t = LABELS[lang];
-  const full = CONTENT.form[lang];
-  const splitIdx = full.indexOf(". ");
-  const title = splitIdx > -1 ? full.slice(0, splitIdx + 1) : full;
-  const sub = splitIdx > -1 ? full.slice(splitIdx + 2) : "";
+  const formContent = CONTENT.form[lang] as { title: string; subtitle: string };
+  const title = formContent.title;
+  const sub = formContent.subtitle;
 
   const [form, setForm] = useState({
     name: "",
@@ -135,9 +134,9 @@ export default function Contact() {
         {/* Left column */}
         <div>
           <h2 className="font-display font-bold text-[32px] lg:text-[36px] leading-tight text-[#183760]">
-            Contact Us
+            {title}
           </h2>
-          <p className="mt-5 text-[15px] font-light text-[#183760] leading-relaxed">Please provide a brief description of your matter and our team will be in touch.</p>
+          <p className="mt-5 text-[15px] font-light text-[#183760] leading-relaxed">{sub}</p>
 
           <div className="mt-10 space-y-5">
             <div className="flex items-start gap-3">
