@@ -116,11 +116,11 @@ export default function Specialties({
   );
 
   return (
-    <section id="specialties" className="bg-white py-20 lg:py-28 scroll-mt-[92px]">
+    <section id="specialties" className="bg-white py-16 lg:py-28 scroll-mt-[72px]">
       <div className="container">
-        <div className="grid lg:grid-cols-[340px_1fr] gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-[340px_1fr] gap-10 lg:gap-20">
           {/* Left sidebar — Canva: thick blue rule down the far left */}
-          <div className="self-start w-full border-l-[3px] border-[#2f5c99] pl-6 py-2">
+          <div className="self-start lg:sticky lg:top-[100px] w-full border-l-[3px] border-[#2f5c99] pl-6 py-2">
             {renderGroup("legal", CONTENT.tabLegal[lang], CONTENT.legalOrder, legalOpen)}
 
             {/* Consulting Services — outlined dropdown box per Canva */}

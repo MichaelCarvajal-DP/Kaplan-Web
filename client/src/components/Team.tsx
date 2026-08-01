@@ -93,7 +93,7 @@ const PARTNERS: Partner[] = [
   {
     key: "bruce",
     name: "Bruce C. Kaplan, Esq.",
-    photo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663863390635/yTqnVxZuyVPYqGkX.png",
+    photo: "/manus-storage/bruce_photo_bc734294.png",
     monogram: "BCK",
     credentials: (lang) => [
       { text: "Brooklyn Law School, JD | Union College, BA History" },
@@ -120,8 +120,8 @@ export default function Team() {
     <section id="team" className="bg-[#2f5c99] py-20 lg:py-28 scroll-mt-[72px]">
       <div className="container">
         {/* Heading + divider + intro */}
-        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8 mb-16 lg:mb-20">
-          <h2 className="font-display font-bold text-white text-[44px] lg:text-[64px] leading-[1.05] shrink-0">
+        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 mb-14 lg:mb-20">
+          <h2 className="font-display font-bold text-white text-[40px] md:text-[52px] lg:text-[60px] leading-[1.05] shrink-0">
             {TEAM_TITLE[lang][0]}
             <br />
             {TEAM_TITLE[lang][1]}
@@ -133,18 +133,18 @@ export default function Team() {
         </div>
 
         {/* Partner columns */}
-        <div className="grid md:grid-cols-2 gap-14 lg:gap-20">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
           {PARTNERS.map((p) => (
             <article key={p.key} className="flex flex-col">
-              <div className="flex items-start gap-6 lg:gap-8">
+              <div className="flex flex-row items-start gap-4 sm:gap-6 lg:gap-8">
                 {p.photo ? (
                   <img
                     src={p.photo}
                     alt={`${p.name} — Kaplan & Kaplan`}
-                    className="w-40 h-52 lg:w-[210px] lg:h-[260px] object-cover object-top rounded-lg shrink-0 grayscale"
+                    className="w-[140px] h-[180px] sm:w-40 sm:h-52 lg:w-[210px] lg:h-[260px] object-cover object-top rounded-lg shrink-0 grayscale"
                   />
                 ) : (
-                  <div className="w-40 h-52 lg:w-[210px] lg:h-[260px] bg-[#e6edf7] rounded-lg flex items-center justify-center shrink-0">
+                  <div className="w-[140px] h-[180px] sm:w-40 sm:h-52 lg:w-[210px] lg:h-[260px] bg-[#e6edf7] rounded-lg flex items-center justify-center shrink-0">
                     <span className="font-display font-bold text-5xl lg:text-6xl text-[#2f5c99]">
                       {p.monogram}
                     </span>

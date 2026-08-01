@@ -216,7 +216,7 @@ export const CONTENT = {
     }
   },
   "about": {
-    "en": "Representation grounded in preparation, absolute discretion, and steady judgment. At Kaplan & Kaplan... our goal is to deliver Tier-1 institutional expertise with the dedicated responsiveness of a sophisticated boutique firm.",
+    "en": "Representation grounded in preparation, absolute discretion, and steady judgment. At Kaplan & Kaplan Legal and Advisory, strong representation begins with a clear understanding of your commercial and personal objectives. We approach every matter with the precision, care, and tailored strategy required for complex, high-stakes challenges. We build lasting relationships grounded in trust and diligence. Whether structuring a cross-border transaction, navigating government scrutiny, or resolving a sensitive dispute, our goal is to deliver Tier-1 institutional expertise with the dedicated responsiveness of a sophisticated boutique firm.",
     "es": "Representación fundamentada en la preparación, discreción absoluta y buen juicio. Nuestro objetivo es brindar experiencia institucional de Nivel 1 con la agilidad de una firma boutique.",
     "fr": "Une représentation reposant sur la préparation, une discrétion absolue et un jugement sûr. Notre objectif est d'offrir une expertise institutionnelle de premier plan avec la réactivité d'un cabinet boutique.",
     "pt": "Representação fundamentada em preparação, discrição absoluta e julgamento seguro. Nosso objetivo é oferecer expertise institucional de Tier-1 com a agilidade dedicada de um escritório boutique.",

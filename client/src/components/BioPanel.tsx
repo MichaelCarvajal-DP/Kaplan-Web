@@ -24,7 +24,7 @@ const PARTNER_META: Record<
   bruce: {
     name: "Bruce C. Kaplan",
     role: "Founding Partner · Former Miami-Dade County Commissioner",
-    photo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663863390635/yTqnVxZuyVPYqGkX.png",
+    photo: "/manus-storage/bruce_photo_bc734294.png",
     initials: "BK",
   },
 };
@@ -64,13 +64,13 @@ export default function BioPanel({
       />
       {/* Sliding panel */}
       <aside
-        className={`fixed top-0 right-0 bottom-0 z-[70] w-full max-w-3xl bg-[#f5f5f5] shadow-[-24px_0_48px_rgba(24,55,96,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`fixed top-0 right-0 bottom-0 z-[70] w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl bg-[#f5f5f5] shadow-[-24px_0_48px_rgba(24,55,96,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           partner ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!partner}
       >
         {meta && (
-          <div className="h-full overflow-y-auto p-8 lg:p-12">
+          <div className="h-full overflow-y-auto p-5 sm:p-8 lg:p-12">
             <div className="flex justify-end mb-6">
               <button
                 onClick={onClose}

@@ -20,37 +20,43 @@ const FLAGS: { lang: Lang; src: string; label: string }[] = [
 ];
 
 // Canva header nav shows 4 items; "Contact Us" is the button on the right.
-const SECTION_IDS = ["specialties", "about", "team", "blog"];
-
+const SECTION_IDS = ["specialties", "about", "team", "contact"];
 export default function Header() {
   const { lang, setLang } = useLang();
   const [active, setActive] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const nav = CONTENT.nav[lang];
-
   useEffect(() => {
+    const ratios: Record<string, number> = {};
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(e.target.id);
-        }
+        entries.forEach((e) => {
+          ratios[e.target.id] = e.intersectionRatio;
+        });
+        const best = Object.entries(ratios).reduce<[string, number]>(
+          (acc, [id, r]) => (r > acc[1] ? [id, r] : acc),
+          ["", 0],
+        );
+        if (best[1] > 0.05) setActive(best[0]);
       },
-      { rootMargin: "-40% 0px -55% 0px" },
+      { threshold: [0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0] },
     );
-    SECTION_IDS.forEach((id) => {
+    const allIds = ["top", ...SECTION_IDS];
+    allIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
   }, []);
-
   const go = (id: string) => {
     setMobileOpen(false);
-    if (id === "blog") {
-      toast("Blog coming soon");
+    const el = document.getElementById(id);
+    if (!el) {
+      toast("Coming soon");
       return;
     }
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActive(id);
   };
 
   return (
@@ -78,12 +84,14 @@ export default function Header() {
             <button
               key={id}
               onClick={() => go(id)}
-              className={`text-[16px] font-medium text-[#1f2937] pb-1.5 border-b-2 transition-colors duration-200 ${
-                active === id ? "border-[#2f5c99]" : "border-transparent hover:border-[#2f5c99]/40"
+              className={`text-[16px] font-medium pb-1.5 border-b-2 transition-all duration-200 ${
+                active === id
+                  ? "border-[#2f5c99] text-[#2f5c99]"
+                  : "border-transparent text-[#1f2937] hover:text-[#2f5c99] hover:border-[#2f5c99]/40"
               }`}
               style={{ fontFamily: "Inter, sans-serif" }}
             >
-              {nav[i]}
+              {(NAV_LABELS[lang] ?? NAV_LABELS.en)[i]}
             </button>
           ))}
         </nav>
@@ -134,9 +142,13 @@ export default function Header() {
             <button
               key={id}
               onClick={() => go(id)}
-              className="text-left text-[15px] font-bold text-[#183760] py-1"
+              className={`text-left text-[15px] font-bold py-1 pl-3 border-l-2 transition-all duration-200 ${
+                active === id
+                  ? "border-[#2f5c99] text-[#2f5c99]"
+                  : "border-transparent text-[#183760]"
+              }`}
             >
-              {nav[i]}
+              {(NAV_LABELS[lang] ?? NAV_LABELS.en)[i]}
             </button>
           ))}
           <div className="flex items-center gap-3 py-2">
@@ -162,3 +174,10 @@ export default function Header() {
     </header>
   );
 }
+const NAV_LABELS: Record<string, string[]> = {
+  en: ["Specialties", "About Us", "Team", "Contact Us"],
+  es: ["Especialidades", "Sobre Nosotros", "Equipo", "Contacto"],
+  fr: ["Spécialités", "À Propos", "Équipe", "Contact"],
+  pt: ["Especialidades", "Sobre Nós", "Equipe", "Contato"],
+  it: ["Specialità", "Chi Siamo", "Team", "Contatti"],
+};
