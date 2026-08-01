@@ -43,28 +43,22 @@
 }
 
 :root {
-  /* Kaplan & Kaplan spec palette:
-     surface #f5f5f5 · section #e6edf7 · navy #183760 · accent #2f5c99 */
-  --kk-surface: #f5f5f5;
-  --kk-section: #e6edf7;
-  --kk-navy: #183760;
-  --kk-accent: #2f5c99;
-  --primary: oklch(0.478 0.104 258.4); /* #2f5c99 */
-  --primary-foreground: oklch(0.97 0 0); /* #f5f5f5 */
-  --sidebar-primary: oklch(0.478 0.104 258.4);
-  --sidebar-primary-foreground: oklch(0.97 0 0);
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-blue-50);
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-blue-50);
   --chart-1: var(--color-blue-300);
   --chart-2: var(--color-blue-500);
   --chart-3: var(--color-blue-600);
   --chart-4: var(--color-blue-700);
   --chart-5: var(--color-blue-800);
   --radius: 0.65rem;
-  --background: oklch(0.97 0 0); /* #f5f5f5 */
-  --foreground: oklch(0.325 0.072 258.9); /* #183760 */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.235 0.015 65);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.325 0.072 258.9);
+  --card-foreground: oklch(0.235 0.015 65);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.325 0.072 258.9);
+  --popover-foreground: oklch(0.235 0.015 65);
   --secondary: oklch(0.98 0.001 286.375);
   --secondary-foreground: oklch(0.4 0.015 65);
   --muted: oklch(0.967 0.001 286.375);
@@ -73,9 +67,9 @@
   --accent-foreground: oklch(0.141 0.005 285.823);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.478 0.104 258.4 / 35%);
-  --input: oklch(0.478 0.104 258.4 / 45%);
-  --ring: oklch(0.478 0.104 258.4);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.623 0.214 259.815);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.235 0.015 65);
   --sidebar-accent: oklch(0.967 0.001 286.375);
@@ -125,14 +119,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-  }
-  .font-display {
-    font-family: "Cormorant Garamond", serif;
-  }
-  html {
-    scroll-behavior: smooth;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),

@@ -11,10 +11,8 @@ import About from "@/components/About";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-
 export default function Home() {
   const [vertical, setVertical] = useState<"legal" | "consulting">("legal");
-
   return (
     <div className="min-h-screen flex flex-col bg-[#f5f5f5]">
       <Header />
